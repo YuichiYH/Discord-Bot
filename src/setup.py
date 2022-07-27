@@ -1,6 +1,7 @@
 import json
 import os
 import discord
+from os.path import exists
 from discord.ext import commands
 
 # Intents
@@ -33,15 +34,21 @@ client = commands.Bot(command_prefix=get_prefix, intents=intents)
 
 # Loads Cogs
 
-for filename in os.listdir("./cogs"):
+for filename in os.listdir(".\src\cogs"):
     if filename.endswith(".py"):
-        client.load_extension(f'cogs.{filename[:-3]}')
+        print(f'cogs.{filename[:-3]}')
+        client.load_extension(f'src.cogs.{filename[:-3]}')
 
 # Ping test
 
 @client.command()
 async def ping(ctx):
     await ctx.send("Pong!")
+
+# Check if files exist
+
+if not exists("./json"):
+    os.mkdir('./json')
 
 # On Ready
 
