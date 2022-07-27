@@ -28,6 +28,8 @@ class Prefix(commands.Cog):
             json.dump(prefixes, f, indent=4)
 
     @commands.command(name= "changeprefix", usage = "Changes the bot prefix", description = "Changes the bot prefix")
+    @commands.guild_only()
+    @commands.has_permissions(administrator = True)
     async def changeprefix(self, ctx, prefix):
         with open('json\prefixes.json', "r") as f:
             prefixes = json.load(f)

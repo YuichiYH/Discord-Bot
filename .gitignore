@@ -163,3 +163,4 @@ cython_debug/
 #.idea/
 token.txt
 json/prefixes.json
+json/nameLogChannel.json
