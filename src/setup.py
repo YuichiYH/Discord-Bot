@@ -36,7 +36,7 @@ client = commands.Bot(command_prefix=get_prefix, intents=intents)
 
 for filename in os.listdir(".\src\cogs"):
     if filename.endswith(".py"):
-        print(f'cogs.{filename[:-3]}')
+        print(f'loaded cogs.{filename[:-3]}')
         client.load_extension(f'src.cogs.{filename[:-3]}')
 
 # Ping test
