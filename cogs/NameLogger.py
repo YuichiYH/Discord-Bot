@@ -1,7 +1,12 @@
 import json
-from xml.etree.ElementTree import Comment
 import discord
+from os.path import exists
+from xml.etree.ElementTree import Comment
 from discord.ext import commands
+
+if not exists(r'json\nameLogChannel.json'):
+    with open(r'json\nameLogChannel.json', 'x') as f:
+        json.dump({}, f)
 
 class NameLogger(commands.Cog):
     def __init__(self, client:commands.Bot):
