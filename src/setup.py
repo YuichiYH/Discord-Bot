@@ -7,6 +7,7 @@ from discord.ext import commands
 
 intents = discord.Intents.default()
 intents.guilds = True
+intents.members = True
 
 # Setup for Prefix
 

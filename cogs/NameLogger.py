@@ -1,11 +1,11 @@
 import json
+from xml.etree.ElementTree import Comment
 import discord
 from discord.ext import commands
 
 class NameLogger(commands.Cog):
     def __init__(self, client:commands.Bot):
         self.client = client
-
 
     @commands.command(name = "logchannel",
                     usage="<Selects the operanting channel>",
@@ -19,10 +19,23 @@ class NameLogger(commands.Cog):
         with open(r'json\nameLogChannel.json', "r") as f:
             channels = json.load(f)
 
-        channels[str(ctx.guild.id)] = channel
+        channels[str(ctx.guild.id)] = int(channel)
 
         with open(r'json\nameLogChannel.json', "w") as f:
             json.dump(channels, f, indent= 4)
+
+    @commands.Cog.listener()
+    async def on_member_update(self, before:discord.Member, after:discord.Member):
+        if before.nick != after.nick:
+
+            with open(r'json\nameLogChannel.json', "r") as f:
+                channels = json.load(f)
+
+            channelid = channels[str(after.guild.id)]
+
+            channel = self.client.get_channel(channelid)
+
+            await channel.send(f"<@{after.id}> changed its name from {before.nick} to {after.nick}")
 
 def setup(client):
     client.add_cog(NameLogger(client))
