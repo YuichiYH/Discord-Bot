@@ -3,6 +3,11 @@ import os
 import discord
 from discord.ext import commands
 
+# Intents
+
+intents = discord.Intents.default()
+intents.guilds = True
+
 # Setup for Prefix
 
 def get_prefix(client, message):
@@ -14,18 +19,28 @@ def get_prefix(client, message):
         prefix = prefixes[str(message.guild.id)]
     
     except:    
+        prefix = "|"
         prefixes[str(message.guild.id)] = "|"
 
         with open('json\prefixes.json', "w") as f:
             json.dump(prefixes, f, indent=4)
+        
 
     return(prefix)
 
-client = commands.Bot(command_prefix=get_prefix)
+client = commands.Bot(command_prefix=get_prefix, intents=intents)
+
+# Loads Cogs
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
         client.load_extension(f'cogs.{filename[:-3]}')
+
+# Ping test
+
+@client.command()
+async def ping(ctx):
+    await ctx.send("Pong!")
 
 # On Ready
 

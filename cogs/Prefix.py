@@ -7,16 +7,6 @@ class Prefix(commands.Cog):
     def __init__(self, client:commands.Bot):
         self.client = client
 
-
-    @commands.command(name = "commandName",
-                    usage="<usage>",
-                    description = "description")
-    @commands.guild_only()
-    @commands.has_permissions()
-    @commands.cooldown(1, 2, commands.BucketType.member)
-    async def commandName(self, ctx:commands.Context):
-        await ctx.send("template command")
-
     @commands.Cog.listener()
     async def on_guild_join(guild):
         with open('json\prefixes.json', "r") as f:
@@ -37,15 +27,17 @@ class Prefix(commands.Cog):
         with open('json\prefixes.json', "w") as f:
             json.dump(prefixes, f, indent=4)
 
-    @commands.command()
-    async def changeprefix(ctx, prefix):
+    @commands.command(name= "changeprefix", usage = "Changes the bot prefix", description = "Changes the bot prefix")
+    async def changeprefix(self, ctx, prefix):
         with open('json\prefixes.json', "r") as f:
             prefixes = json.load(f)
-        
+
         prefixes[str(ctx.guild.id)] = prefix
 
         with open('json\prefixes.json', "w") as f:
-            json.dump(prefixes, f, indent=4)        
+            json.dump(prefixes, f, indent=4)      
+
+        await ctx.send(f"Prefix changed to {prefix}")  
     
 
 def setup(client):
