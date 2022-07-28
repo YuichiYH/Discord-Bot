@@ -5,7 +5,7 @@ from discord.ext import commands
 
 
 
-if not exists('.\json\prefixes.json'):
+if not(exists('.\json\prefixes.json')):
     with open('.\json\prefixes.json', 'x') as f:
         json.dump({}, f)
 

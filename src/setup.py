@@ -47,7 +47,7 @@ async def ping(ctx):
 
 # Check if files exist
 
-if not exists("./json"):
+if not(exists("./json")):
     os.mkdir('./json')
 
 # On Ready
