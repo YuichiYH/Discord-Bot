@@ -7,5 +7,5 @@ A directory for the discord bots that i made
 ### > Log overseer
 > A bot that detects the change of nickname
 
-### > Pyour
+### > Pyuor
 > A little fun bot that i like to mess with
