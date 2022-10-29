@@ -1,4 +1,14 @@
-from src.setup import client
+from logging import exception
 
-with open("token.txt", "r") as token:
-    client.run(token.read())
+from matplotlib.streamplot import InvalidIndexError
+from src.setup import client
+from os import listdir
+
+try:
+    token_path = listdir("token")[0]
+
+    with open(token_path, "r") as token:
+        client.run(token.read())
+
+except IndexError:
+    print("Cound't log into bot, missing token")
