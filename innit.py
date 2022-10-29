@@ -5,7 +5,7 @@ from src.setup import client
 from os import listdir
 
 try:
-    token_path = listdir("token")[0]
+    token_path = "token/" + listdir("token")[0]
 
     with open(token_path, "r") as token:
         client.run(token.read())
