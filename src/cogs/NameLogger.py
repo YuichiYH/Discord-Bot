@@ -1,7 +1,6 @@
 import json
 import discord
 from os.path import exists
-from xml.etree.ElementTree import Comment
 from discord.ext import commands
 
 
