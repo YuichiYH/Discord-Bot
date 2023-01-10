@@ -4,8 +4,8 @@ A directory for the discord bots that i made
 
 # Bots in this directory
 
-### > Log overseer
+### > Log overseer (main)
 > A bot that detects the change of nickname
 
 ### > Pyuor
-> A little fun bot that i like to mess with
+> A little fun bot that i like to mess with comands in console
